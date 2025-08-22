@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard - Task2Cash</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      color: #333;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      background: #333;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      display: flex;
+      justify-content: space-around;
+      padding: 30px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: white;
+      width: 250px;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .card h3 { margin: 10px 0; }
+    .btn {
+      background: #4CAF50;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Task2Cash - User Dashboard</h1>
+  </header>
+
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="tasks.html">Tasks</a>
+    <a href="wallet.html">Wallet</a>
+    <a href="referrals.html">Referrals</a>
+    <a href="withdraw.html">Withdraw</a>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <h3>Balance</h3>
+      <p>$12.50</p>
+      <a href="wallet.html" class="btn">View Wallet</a>
+    </div>
+    <div class="card">
+      <h3>Tasks Completed</h3>
+      <p>5</p>
+      <a href="tasks.html" class="btn">Do More</a>
+    </div>
+    <div class="card">
+      <h3>Referrals</h3>
+      <p>3</p>
+      <a href="referrals.html" class="btn">Invite Friends</a>
+    </div>
+  </div>
+
+</body>
+</html>
