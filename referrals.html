@@ -10,7 +10,10 @@
     nav { background: #333; padding: 10px; text-align: center; }
     nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
     .content { padding: 40px; text-align: center; }
-    .ref-box { background: white; padding: 20px; margin: 20px auto; width: 80%; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .ref-box { background: white; padding: 20px; margin: 20px auto; width: 80%;
+      border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    button { background: #4CAF50; color: white; padding: 10px 20px; border: none;
+      border-radius: 5px; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -26,8 +29,24 @@
     <div class="ref-box">
       <h2>Your Referral Link</h2>
       <p>https://task2cash.com/ref/username</p>
-      <p>Invite friends and earn bonuses!</p>
+      <p>Invite friends and earn $2 per referral.</p>
+      <button onclick="addReferral()">Add Referral</button>
     </div>
   </div>
+
+  <script>
+    function addReferral() {
+      let balance = parseFloat(localStorage.getItem("balance")) || 0;
+      let referrals = parseInt(localStorage.getItem("referrals")) || 0;
+
+      balance += 2;
+      referrals += 1;
+
+      localStorage.setItem("balance", balance);
+      localStorage.setItem("referrals", referrals);
+
+      alert("Referral added! $2.00 bonus.");
+    }
+  </script>
 </body>
-                              </html>
+</html>
