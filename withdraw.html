@@ -1,49 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Withdraw - Task2Cash</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; }
-    header { background: #4CAF50; color: white; padding: 15px; text-align: center; }
-    nav { background: #333; padding: 10px; text-align: center; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    .content { padding: 40px; text-align: center; }
-    .form-box { background: white; padding: 20px; margin: 20px auto; width: 80%; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    input, select, button {
-      padding: 10px; margin: 10px 0; width: 80%; border: 1px solid #ccc; border-radius: 5px;
+<script>
+  let balance = parseFloat(localStorage.getItem("balance")) || 0;
+  document.getElementById("withdrawBalance").textContent = "$" + balance.toFixed(2);
+
+  function withdraw() {
+    let amount = parseFloat(document.getElementById("amount").value);
+    if (isNaN(amount) || amount <= 0) {
+      alert("Enter a valid amount.");
+      return;
     }
-    button {
-      background: #4CAF50; color: white; cursor: pointer;
+    if (amount > balance) {
+      alert("Insufficient balance!");
+      return;
     }
-  </style>
-</head>
-<body>
-  <header><h1>Withdraw Earnings</h1></header>
-  <nav>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="tasks.html">Tasks</a>
-    <a href="wallet.html">Wallet</a>
-    <a href="referrals.html">Referrals</a>
-    <a href="withdraw.html">Withdraw</a>
-  </nav>
-  <div class="content">
-    <div class="form-box">
-      <h2>Request Withdrawal</h2>
-      <form>
-        <input type="number" placeholder="Amount (e.g. 10.00)" required><br>
-        <select required>
-          <option value="">Select Payment Method</option>
-          <option>Bank Transfer</option>
-          <option>PayPal</option>
-          <option>Crypto</option>
-          <option>Mobile Money</option>
-        </select><br>
-        <input type="text" placeholder="Account / Wallet ID" required><br>
-        <button type="submit">Submit Request</button>
-      </form>
-    </div>
-  </div>
-</body>
-                                                                          </html>
+    balance -= amount;
+    localStorage.setItem("balance", balance);
+
+    // Record withdrawal in transactions
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    transactions.push({
+      date: new Date().toLocaleString(),
+      type: "Withdrawal",
+      amount: "-$" + amount.toFixed(2)
+    });
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+
+    document.getElementById("withdrawBalance").textContent = "$" + balance.toFixed(2);
+    alert("Withdrawal request submitted for $" + amount.toFixed(2));
+  }
+      </script>
