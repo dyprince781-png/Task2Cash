@@ -10,6 +10,10 @@
     nav { background: #333; padding: 10px; text-align: center; }
     nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
     .content { padding: 40px; text-align: center; }
+    .task { background: white; margin: 20px auto; padding: 20px; width: 80%; border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    button { background: #4CAF50; color: white; padding: 10px 20px; border: none;
+      border-radius: 5px; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -22,8 +26,31 @@
     <a href="withdraw.html">Withdraw</a>
   </nav>
   <div class="content">
-    <h2>Task List Coming Soon 🚀</h2>
-    <p>Here users will see ads, surveys, and offers.</p>
+    <div class="task">
+      <h2>Watch Ad Video</h2>
+      <p>Earn $0.50</p>
+      <button onclick="completeTask(0.5)">Complete Task</button>
+    </div>
+    <div class="task">
+      <h2>Take a Survey</h2>
+      <p>Earn $1.00</p>
+      <button onclick="completeTask(1)">Complete Task</button>
+    </div>
   </div>
+
+  <script>
+    function completeTask(amount) {
+      let balance = parseFloat(localStorage.getItem("balance")) || 0;
+      let tasks = parseInt(localStorage.getItem("tasks")) || 0;
+
+      balance += amount;
+      tasks += 1;
+
+      localStorage.setItem("balance", balance);
+      localStorage.setItem("tasks", tasks);
+
+      alert("Task completed! $" + amount.toFixed(2) + " added.");
+    }
+  </script>
 </body>
 </html>
